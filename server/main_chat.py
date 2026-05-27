@@ -15,7 +15,15 @@ def get_wav_duration(path):
         return len(f) / f.samplerate
 
 
-print(' \n ========= Starting Chat... ================ \n')
+import threading
+
+def pomodoro_timer(minutes=25):
+    print(f"\n[!] Pomodoro timer started for {minutes} minutes. Focus on your breathing, and your studies.")
+    time.sleep(minutes * 60)
+    print("\n[!] Pomodoro session complete! Time for a short break, my young friend.")
+    # Could trigger an audio alert here
+
+print(' \n ========= Starting Study Session... ================ \n')
 whisper_model = WhisperModel("base.en", device="cpu", compute_type="float32")
 
 while True:
@@ -24,6 +32,12 @@ while True:
     conversation_recording.parent.mkdir(parents=True, exist_ok=True)
 
     user_spoken_text = record_and_transcribe(whisper_model, conversation_recording)
+    
+    if "pomodoro" in user_spoken_text.lower() or "study" in user_spoken_text.lower():
+        # Start a background timer for 25 minutes
+        t = threading.Thread(target=pomodoro_timer, args=(25,))
+        t.daemon = True
+        t.start()
 
     ### pass to LLM and get a LLM output.
 
@@ -46,8 +60,3 @@ while True:
     play_audio(output_wav_path)
     # clean up audio files
     [fp.unlink() for fp in Path("audio").glob("*.wav") if fp.is_file()]
-    # # Example
-    # duration = get_wav_duration(output_wav_path)
-
-    # print("waiting for audio to finish...")
-    # time.sleep(duration)
