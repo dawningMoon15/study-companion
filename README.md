@@ -46,6 +46,4 @@ python server/main_chat.py
 
 The app will listen for your voice, transcribe it, get a response from the LLM, generate the audio, and play it back.
 
-## License
 
-MIT - feel free to fork and modify!
