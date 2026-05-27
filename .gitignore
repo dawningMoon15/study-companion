@@ -163,3 +163,4 @@ cython_debug/
 audio/
 chat_history.json
 character_files/*.wav
+character_config.yaml
