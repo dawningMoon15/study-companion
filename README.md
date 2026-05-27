@@ -1,29 +1,19 @@
 # Study Companion
 
-Welcome to your wise, patient, Oogway-style study companion. 
-This project listens to your speech, maintains a calm and motivating conversation, and gently guides you through your Pomodoro study sessions.
+A voice-based LLM study companion built with Python. I wanted to make something that helps me focus while studying, so this bot acts a bit like Master Oogway—calm, patient, and motivating. 
 
-## ✨ Features
+It listens to your voice, responds using OpenAI's API, and uses TTS to speak back. It also has a built-in Pomodoro timer to help structure study sessions.
 
-- 💬 **Motivating Dialogue**: Driven by an OpenAI LLM, configured with a wise teacher persona.
-- ⏱️ **Pomodoro Sessions**: Integrated Pomodoro timer. Say "start studying" or "pomodoro" to initiate a focused study session.
-- 🔊 **Voice Generation**: High-quality voice synthesis with GPT-SoVITS.
-- 🎧 **Speech Recognition**: Voice input powered by Faster-Whisper.
-- 🧠 **Contextual Memory**: Keeps track of your study session and conversation history.
+## Features
 
-## ⚙️ Configuration
+- **Voice Chat**: Talk to the bot via microphone. It uses Faster-Whisper for local speech-to-text.
+- **Study Mode / Pomodoro**: If you say "start studying" or "pomodoro", it kicks off a 25-minute background timer and reminds you when it's time for a break.
+- **Personality**: Configured to be a wise teacher (Oogway vibe) rather than a generic assistant.
+- **Voice Synthesis**: Uses GPT-SoVITS to generate the audio responses.
 
-Your companion's personality and voice are defined in `character_config.yaml`.
+## Setup
 
-```yaml
-OPENAI_API_KEY: sk-YOURAPIKEY
-history_file: chat_history.json
-model: "gpt-4.1-mini"
-```
-
-## 🛠️ Setup
-
-### Install Dependencies
+You'll need a few things installed:
 
 ```bash
 pip install uv 
@@ -31,26 +21,31 @@ uv pip install -r extra-req.txt
 uv pip install -r requirements.txt
 ```
 
-**For GPU Acceleration (Faster-Whisper)**:
-* Ensure CUDA & cuDNN are installed.
-* `ffmpeg` is required for audio processing.
+Note: If you want to use Faster-Whisper on your GPU, make sure you have CUDA and cuDNN set up. You also need `ffmpeg` installed on your system for the audio processing to work.
 
-## 🧪 Usage
+## Configuration
 
-1. **Launch the GPT-SoVITS API** to serve the voice synthesis model.
-2. **Run the study companion**:
+Everything is controlled via `character_config.yaml`. Add your OpenAI API key there:
+
+```yaml
+OPENAI_API_KEY: sk-YOURAPIKEY
+history_file: chat_history.json
+model: "gpt-4.1-mini"
+```
+
+You can also tweak the system prompt in that file if you want to change the personality.
+
+## Running the app
+
+1. Start your GPT-SoVITS API server first (it expects this to be running for voice synthesis).
+2. Run the main script:
 
 ```bash
 python server/main_chat.py
 ```
 
-The flow:
-1. The companion listens to your microphone.
-2. Faster-Whisper transcribes your speech.
-3. If you say "pomodoro" or "study", a 25-minute focus timer starts in the background.
-4. The LLM generates a thoughtful response.
-5. GPT-SoVITS synthesizes the companion's voice, which is played back to you.
+The app will listen for your voice, transcribe it, get a response from the LLM, generate the audio, and play it back.
 
-## 📜 License
+## License
 
-MIT — feel free to modify and build your own learning companions.
+MIT - feel free to fork and modify!
