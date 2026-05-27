@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Oogway Study Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Dashboard -->
+        <aside class="sidebar">
+            
+            <!-- Clock Widget -->
+            <div class="widget clock-widget">
+                <div id="clockDisplay" class="clock-time">00:00</div>
+                <div id="dateDisplay" class="clock-date">Loading...</div>
+            </div>
+
+            <!-- Weather Widget -->
+            <div class="widget weather-widget">
+                <div class="widget-header">Weather</div>
+                <div id="weatherDisplay" class="weather-content">Fetching...</div>
+            </div>
+
+            <!-- Quote Widget -->
+            <div class="widget quote-widget">
+                <div class="widget-header">Wisdom</div>
+                <div id="quoteDisplay" class="quote-content">"There are no accidents."</div>
+            </div>
+
+            <!-- Timer Suite Widget -->
+            <div class="widget timer-suite-widget">
+                <div class="timer-tabs">
+                    <button class="tab-btn active" id="tabPomodoro">Pomodoro</button>
+                    <button class="tab-btn" id="tabStopwatch">Stopwatch</button>
+                </div>
+                
+                <div id="pomodoroView" class="timer-view active">
+                    <div class="time-display" id="pomodoroDisplay">25:00</div>
+                    <button class="timer-action-btn" id="pomodoroStartBtn">Start Focus</button>
+                </div>
+
+                <div id="stopwatchView" class="timer-view">
+                    <div class="time-display" id="stopwatchDisplay">00:00.0</div>
+                    <div class="stopwatch-controls">
+                        <button class="timer-action-btn" id="stopwatchStartBtn">Start</button>
+                        <button class="timer-action-btn stop-btn" id="stopwatchStopBtn">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lo-Fi Player Widget -->
+            <div class="widget lofi-widget">
+                <div class="widget-header">Lo-Fi Beats</div>
+                <!-- YouTube embed for Lofi Girl -->
+                <iframe width="100%" height="150" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&controls=1" title="Lofi Radio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="app-container">
+            <header class="app-header">
+                <div class="header-titles">
+                    <h1>Master Oogway</h1>
+                    <p class="subtitle">Your Wise Study Companion</p>
+                </div>
+            </header>
+
+            <section class="chat-container" id="chatContainer">
+                <div class="message system-message">
+                    <div class="message-content">
+                        Greetings, student. I am here to guide your mind. What shall we focus on today?
+                    </div>
+                </div>
+            </section>
+
+            <div class="controls-container">
+                <form id="chatForm" class="chat-form">
+                    <input type="text" id="userInput" placeholder="Speak your mind, my young friend..." autocomplete="off" required>
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+                
+                <div class="tts-toolbar">
+                    <div class="tts-controls">
+                        <label class="switch-container">
+                            <input type="checkbox" id="ttsToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="tts-label">Voice</span>
+                    </div>
+                    
+                    <div class="tts-playback-controls">
+                        <button type="button" class="voice-btn" id="voicePauseBtn" title="Pause Voice">⏸</button>
+                        <button type="button" class="voice-btn" id="voiceResumeBtn" title="Resume Voice">▶</button>
+                        <button type="button" class="voice-btn stop-btn" id="voiceStopBtn" title="Stop Voice">⏹</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
